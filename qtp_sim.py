@@ -1,6 +1,7 @@
 import numpy as np
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit.quantum_info import Statevector, state_fidelity
+import matplotlib.pyplot as plt
 
 qr = QuantumRegister(3) # quantum register that holds 3 qubits
 #qr[0] is the qubits that Alice wants to teleport (message qubit)
@@ -57,3 +58,12 @@ a_state = Statevector.from_instruction(original)
 
 print(f"Alice's original state: {a_state.draw('latex_source')}")
 print(f"Angles — θ: {theta:.4f}, φ: {phi:.4f}, λ: {lam:.4f}")
+
+qc.draw("mpl", 
+        fold=-1,                  # This keeps the circuit in one continuous line
+        scale=0.6,                # Shrinks the qubits so more can fit on screen
+        style={'figsize': (50, 15),
+               'fontsize': 8},    
+               # this makes the tect smaller so it's more readable
+        plot_barriers=True)
+plt.show();
